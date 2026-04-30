@@ -17,9 +17,17 @@ class Ui_MainWindow(object):
         MainWindow.setMaximumSize(QtCore.QSize(800, 600))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.pushButton = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(110, 80, 93, 28))
-        self.pushButton.setObjectName("pushButton")
+        self.select_folder = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.select_folder.setGeometry(QtCore.QRect(20, 30, 161, 51))
+        self.select_folder.setObjectName("select_folder")
+        self.label = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(220, 30, 331, 71))
+        self.label.setText("")
+        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label.setObjectName("label")
+        self.sort = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.sort.setGeometry(QtCore.QRect(580, 30, 151, 51))
+        self.sort.setObjectName("sort")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -31,7 +39,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.select_folder.setText(_translate("MainWindow", "Select Desired Folder"))
+        self.sort.setText(_translate("MainWindow", "Sort"))
 
 
 if __name__ == "__main__":
