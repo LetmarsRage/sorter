@@ -13,6 +13,7 @@ class Sorter:
         """using pathlib's Path to make the selected folder able to be worked with.
         also makes a list called files which stores the files that will be organized.
         """
+        self.file_groups = []
         self.__folder = Path(path)
         self.files = [file for file in self.__folder.iterdir() if file.is_file()]
 
@@ -22,10 +23,18 @@ class Sorter:
             if file_extension not in self.file_groups:
                 self.file_groups.append(file_extension)
 
+    def check_folder(self) -> bool:
+        """checks to see if the there is a directory selected"""
+        if self.__folder is None:
+            return False
+        else:
+            return True
+
     def sort(self) -> None:
         """creates the folders based on the extensions of the files,
         if they don't have extensions they get put in the miscellaneous folder
         """
+        self.files = [file for file in self.__folder.iterdir() if file.is_file()]
         misc_folder = self.__folder / "miscellaneous"
         for file_extension in self.file_groups:
             if file_extension == "" and not misc_folder.exists():

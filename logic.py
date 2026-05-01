@@ -21,6 +21,9 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def run_sort(self) -> None:
         """runs the sorter"""
-        self.sorter.sort()
-        self.label.setText("Sorted Successfully")
-        self.sort.setEnabled(False)
+        if self.sorter.check_folder():
+            self.sorter.sort()
+            self.label.setText("Sorted Successfully")
+        else:
+            """if there is no directory chosen the sort will fail but the user can go ahead and select one"""
+            self.label.setText("Sort has failed:no directory selected")
