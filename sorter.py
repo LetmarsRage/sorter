@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import *
 from pathlib import Path
+import shutil
 
 #shutil.move(current folder, desired folder)
 class Sorter:
@@ -26,11 +27,24 @@ class Sorter:
         """creates the folders based on the extensions of the files,
         if they don't have extensions they get put in the miscellaneous folder
         """
+        misc_folder = self.__folder / "miscellaneous"
         for file_extension in self.file_groups:
-            new_folder = self.__folder / file_extension
-            misc_folder = self.__folder / "Miscellaneous"
-            if file_extension == "" and not misc_folder:
+            if file_extension == "" and not misc_folder.exists():
                 misc_folder.mkdir()
-            elif not new_folder.exists():
-                new_folder.mkdir()
-        
+            else:
+                new_folder = self.__folder / file_extension[1:]
+                if not new_folder.exists():
+                    new_folder.mkdir()
+        """actually organizes the files in the folder into their respective folders"""
+        for file in self.files:
+            source = file
+            print(file)
+            file_extension = file.suffix.lower()
+
+            if file_extension == "":
+                dest_folder = misc_folder
+            else:
+                dest_folder = self.__folder / file_extension[1:]
+
+            final_dest = dest_folder / file.name
+            shutil.move(str(source), str(final_dest))
