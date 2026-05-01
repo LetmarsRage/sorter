@@ -10,7 +10,6 @@ class Logic(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         """initializes the sorter class"""
         self.sorter = Sorter()
-
         self.select_folder.clicked.connect(self.choose_folder)
         self.sort.clicked.connect(self.run_sort)
 
@@ -18,7 +17,6 @@ class Logic(QMainWindow, Ui_MainWindow):
         """gets the folder from the user after they go through their own files"""
         directory = QFileDialog.getExistingDirectory(self, "Select a Directory")
         self.label.setText("You Have Chosen: " + Path(directory).name)
-        self.select_folder.setEnabled(False)
         self.sorter.create_and_organize(directory)
 
     def run_sort(self) -> None:

@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import *
 from pathlib import Path
 import shutil
 
-#shutil.move(current folder, desired folder)
+"""ai was used to search through the QFileDialog library and the pathlib library as they were extensively used"""
 class Sorter:
     def __init__(self) -> None:
         """Creates variables that will be used consistently"""
@@ -21,7 +21,6 @@ class Sorter:
             file_extension = file.suffix.lower()
             if file_extension not in self.file_groups:
                 self.file_groups.append(file_extension)
-        print(self.file_groups)
 
     def sort(self) -> None:
         """creates the folders based on the extensions of the files,
@@ -35,10 +34,13 @@ class Sorter:
                 new_folder = self.__folder / file_extension[1:]
                 if not new_folder.exists():
                     new_folder.mkdir()
-        """actually organizes the files in the folder into their respective folders"""
+        """actually organizes the files in the folder into their respective folders
+        Used ai to make the path, as i was struggling to make it, the answer was to make the files lose the
+        period from .suffix.lower(), as it was previously ".png" instead of just png for the folder titles.
+        Also changed to using shutil to move the files as it would simplify the process instead of having to deal with Path 
+        """
         for file in self.files:
             source = file
-            print(file)
             file_extension = file.suffix.lower()
 
             if file_extension == "":
